@@ -65,6 +65,16 @@ async function run() {
       res.send(result);
     });
 
+    //filter data for unique email
+    app.get("/mail", async (req, res) => {
+      let query = {};
+      if (req.query?.email) {
+        query = { email: req.query.email };
+      }
+      const result = await All.find(query).toArray();
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
