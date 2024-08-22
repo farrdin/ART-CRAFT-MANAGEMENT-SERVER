@@ -45,6 +45,19 @@ async function run() {
       res.send(result);
     });
 
+    // update added books
+    app.patch("/all/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const upItems = req.body;
+      const upDoc = {
+        $set: upItems,
+      };
+      const result = await All.updateOne(filter, upDoc);
+      res.send(result);
+    });
+
+    
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
