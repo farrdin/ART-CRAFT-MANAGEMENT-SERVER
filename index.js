@@ -38,6 +38,13 @@ async function run() {
       res.send(result);
     });
 
+    // get operation for All craft start here
+    app.get("/all", async (req, res) => {
+      const items = All.find();
+      const result = await items.toArray();
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
