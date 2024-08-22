@@ -8,7 +8,12 @@ const port = process.env.PORT || 5000;
 // Middleware//
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      "https://prb9-a10.web.app",
+      "https://prb9-a10.firebaseapp.com",
+      "https://prb9-a10.netlify.app",
+    ],
     credentials: true,
   })
 );
@@ -27,7 +32,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
     // Mongo collection name added
     const All = client.db("PRB9-A10").collection("AllCraft");
 
@@ -76,10 +81,10 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    // await client.db("admin").command({ ping: 1 });
+    // console.log(
+    //   "Pinged your deployment. You successfully connected to MongoDB!"
+    // );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
