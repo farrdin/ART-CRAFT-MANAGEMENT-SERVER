@@ -31,6 +31,13 @@ async function run() {
     // Mongo collection name added
     const All = client.db("PRB9-A10").collection("AllCraft");
 
+    // post operation started at All Craft
+    app.post("/all", async (req, res) => {
+      const add = req.body;
+      const result = await All.insertOne(add);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
